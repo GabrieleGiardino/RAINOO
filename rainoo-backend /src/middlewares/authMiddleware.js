@@ -3,15 +3,9 @@ const User = require('../models/User');
 
 const authMiddleware = async (req, res, next) => {
   try {
-
-    if (req.isAuthenticated && req.isAuthenticated()) {
-      return next();
-    }
-
-
     const token = req.headers.authorization?.split(' ')[1];
     if (!token) {
-      return res.status(401).json({ message: 'Token mancante o utente non autenticato!' });
+      return res.status(401).json({ message: 'Token mancante!' });
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -24,7 +18,7 @@ const authMiddleware = async (req, res, next) => {
     req.user = user;
     next();
   } catch (error) {
-    console.error('Errore authMiddleware:', error.message);
+    console.error('❌ Errore authMiddleware:', error.message);
     res.status(401).json({ message: 'Accesso non autorizzato!' });
   }
 };

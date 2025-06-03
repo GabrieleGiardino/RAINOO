@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
+// REGISTER USER
 const registerUser = async (req, res) => {
   try {
     const { nome, cognome, email, password } = req.body;
@@ -42,15 +43,15 @@ const registerUser = async (req, res) => {
       },
     });
   } catch (error) {
-    console.error('Errore durante la registrazione:', error);
+    console.error('❌ Errore durante la registrazione:', error);
     res.status(500).json({ message: 'Errore interno del server' });
   }
 };
 
+// GOOGLE AUTH CALLBACK
 const googleAuthCallback = async (req, res) => {
   try {
     const { displayName, name, emails } = req.user;
-
     const email = emails?.[0]?.value;
     const nome = name?.givenName || 'Nome';
     const cognome = name?.familyName || 'Cognome';
@@ -69,7 +70,6 @@ const googleAuthCallback = async (req, res) => {
         email,
         password: '',
       });
-
       await user.save();
     }
 
@@ -77,23 +77,52 @@ const googleAuthCallback = async (req, res) => {
       expiresIn: '1d',
     });
 
+    console.log('✅ Google login success, token:', token);
+    res.redirect(`http://localhost:3000/google-success?token=${token}`);
+  } catch (error) {
+    console.error('❌ Errore login Google:', error);
+    res.status(500).json({ message: 'Errore durante il login con Google' });
+  }
+};
+
+// UPLOAD AVATAR (con multer + CloudinaryStorage)
+const uploadAvatar = async (req, res) => {
+  try {
+    const userId = req.params.id;
+
+    if (!req.file || !req.file.path) {
+      return res.status(400).json({ message: 'Nessun file caricato.' });
+    }
+
+    // multer + CloudinaryStorage ti restituisce già l’URL in req.file.path
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { avatar: req.file.path },
+      { new: true }
+    ).select('-password');
+
+    if (!user) {
+      return res.status(404).json({ message: 'Utente non trovato.' });
+    }
+
     res.json({
-      token,
+      message: 'Avatar aggiornato!',
       user: {
         id: user._id,
         nome: user.nome,
         cognome: user.cognome,
         email: user.email,
+        avatar: user.avatar,
       },
     });
   } catch (error) {
-    console.error('Errore login Google:', error);
-    res.status(500).json({ message: 'Errore durante il login con Google' });
+    console.error('❌ Errore upload avatar:', error);
+    res.status(500).json({ message: 'Errore durante l’upload dell’avatar' });
   }
 };
 
 module.exports = {
   registerUser,
-  googleAuthCallback
+  googleAuthCallback,
+  uploadAvatar,
 };
-

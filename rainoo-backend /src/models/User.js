@@ -1,16 +1,12 @@
 const mongoose = require('mongoose');
 
-const UserSchema = new mongoose.Schema({
-  nome: { type: String },
-  cognome: { type: String },
-  username: { type: String, required: true, unique: true, trim: true },
-  email: { type: String, required: true, unique: true, trim: true },
-  password: { type: String },
-  googleId: { type: String, default: null }, 
-}, { timestamps: true });
+const userSchema = new mongoose.Schema({
+  nome: String,
+  cognome: String,
+  username: String,
+  email: { type: String, unique: true },
+  password: String,
+  avatar: String, // 🔥 aggiunto campo avatar (URL immagine)
+});
 
-const User = mongoose.model('User', UserSchema);
-
-
-
-module.exports = User;
+module.exports = mongoose.model('User', userSchema);

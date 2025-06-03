@@ -4,10 +4,7 @@ const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const User = require('../models/User');
 const authMiddleware = require('../middlewares/authMiddleware');
-const {
-  registerUser,
-  googleAuthCallback
-} = require('../controllers/authController');
+const { registerUser } = require('../controllers/authController');
 
 const router = express.Router();
 
@@ -56,7 +53,7 @@ router.get('/profile', authMiddleware, (req, res) => {
   });
 });
 
-
+// GOOGLE OAUTH START
 router.get(
   '/google',
   passport.authenticate('google', {
@@ -65,18 +62,27 @@ router.get(
   })
 );
 
+// GOOGLE OAUTH CALLBACK
 router.get(
   '/google/callback',
   passport.authenticate('google', { failureRedirect: '/login/failed' }),
-  (req, res) => {
-    req.login(req.user, (err) => {
-      if (err) {
-        console.error('Errore salvataggio sessione:', err);
-        return res.redirect('/login/failed');
-      }
+  async (req, res) => {
+    try {
+      // 🔥 Genera token per utente autenticato
+      const token = jwt.sign(
+        { id: req.user._id, username: req.user.username },
+        process.env.JWT_SECRET,
+        { expiresIn: '1d' }
+      );
 
-      res.redirect('http://localhost:3000/google-success');
-    });
+      console.log('✅ Google callback, token generato:', token);
+
+      // 🔗 Redirect al frontend con token nella query string
+      res.redirect(`http://localhost:3000/google-success?token=${token}`);
+    } catch (error) {
+      console.error('❌ Errore nel callback Google:', error);
+      res.redirect('/login/failed');
+    }
   }
 );
 
