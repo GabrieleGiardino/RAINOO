@@ -16,7 +16,7 @@ router.post('/create-checkout-session', async (req, res) => {
             product_data: {
               name: 'Noleggio Ombrello',
             },
-            unit_amount: 199, // €1.99
+            unit_amount: 500, // €5.00
           },
           quantity: 1,
         },
