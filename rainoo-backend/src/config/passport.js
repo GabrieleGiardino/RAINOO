@@ -1,3 +1,6 @@
+console.log("🌐 ENV:", process.env.GOOGLE_CLIENT_ID, process.env.GOOGLE_CALLBACK_URL);
+
+
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const User = require('../models/User');
@@ -51,5 +54,8 @@ passport.deserializeUser(async (id, done) => {
     done(error, null);
   }
 });
+
+console.log("🌐 ENV:", process.env.GOOGLE_CLIENT_ID, process.env.GOOGLE_CALLBACK_URL);
+
 
 module.exports = passport;

@@ -6,7 +6,8 @@ const userSchema = new mongoose.Schema({
   username: String,
   email: { type: String, unique: true },
   password: String,
-  avatar: String, // 🔥 aggiunto campo avatar (URL immagine)
+  avatar: String, 
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.models.User || mongoose.model('User', userSchema);
+

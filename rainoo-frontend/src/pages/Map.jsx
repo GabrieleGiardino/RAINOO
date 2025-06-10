@@ -1,35 +1,31 @@
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
+import React from 'react';
 import 'leaflet/dist/leaflet.css';
-import markerIconPng from 'leaflet/dist/images/marker-icon.png';
-import markerShadowPng from 'leaflet/dist/images/marker-shadow.png';
 
-// Fix icona marker Leaflet
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconUrl: markerIconPng,
-  shadowUrl: markerShadowPng
-});
-
-function Map() {
-  return (
-    <div style={{ width: '100%', height: '400px', marginTop: '20px' }}>
-      <MapContainer
-        center={[45.4642, 9.19]} // Milano
-        zoom={13}
-        style={{ height: '100%', width: '100%' }}
-      >
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; OpenStreetMap contributors'
-        />
-        <Marker position={[45.4642, 9.19]}>
-          <Popup>Stazione Rainoo - Milano 📍 </Popup>
-          📍
-        </Marker>
-      </MapContainer>
-    </div>
-  );
+function FitBounds({ markers }) {
+  const map = useMap();
+  React.useEffect(() => {
+    if (markers.length > 0) {
+      map.fitBounds(L.latLngBounds(markers));
+    }
+  }, [markers, map]);
+  return null;
 }
 
-export default Map;
+export default function MapWithMarkers({ markers }) {
+  return (
+    <MapContainer center={[45.4642, 9.19]} zoom={13} style={{ height: '400px', width: '100%' }}>
+      <TileLayer
+        attribution='&copy; OpenStreetMap contributors'
+        url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+      />
+      {markers.map((pos, i) => (
+        <Marker key={i} position={pos}>
+          <Popup>Posizione {i + 1} - Milano</Popup>
+        </Marker>
+      ))}
+      <FitBounds markers={markers} />
+    </MapContainer>
+  );
+}

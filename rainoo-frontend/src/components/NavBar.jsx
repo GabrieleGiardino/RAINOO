@@ -40,12 +40,11 @@ function Navbar() {
       <div className={`navbar-links ${menuOpen ? 'open' : ''}`}>
         {!user && (
           <>
-            <Link to="/about" onClick={handleLinkClick}>About</Link>
-            <Link to="/partnerships" onClick={handleLinkClick}>Partnerships</Link>
-            <Link to="/solutions" onClick={handleLinkClick}>Solutions</Link>
-
-            <Link to="/login" onClick={handleLinkClick}>{t('login')}</Link>
-            <Link to="/register" onClick={handleLinkClick}>{t('register')}</Link>
+            <Link to="/about" onClick={handleLinkClick}>{t('nav.about')}</Link>
+            <Link to="/partnerships" onClick={handleLinkClick}>{t('nav.partnerships')}</Link>
+            <Link to="/solutions" onClick={handleLinkClick}>{t('nav.solutions')}</Link>
+            <Link to="/login" onClick={handleLinkClick}>{t('nav.login')}</Link>
+            <Link to="/register" onClick={handleLinkClick}>{t('nav.register')}</Link>
           </>
         )}
         {user && (

@@ -1,14 +1,16 @@
 {
-  "name": "rainoo-backend-",
+  "name": "rainoo-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Backend per l'app Rainoo",
+  "main": "src/server.js",
   "scripts": {
+    "start": "node src/server.js",
+  "dev": "nodemon server.js",
+
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Gabriele Giardino",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "bcryptjs": "^3.0.2",
     "cloudinary": "^1.30.0",
@@ -22,7 +24,11 @@
     "multer-storage-cloudinary": "^4.0.0",
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
+    "react-icons": "^5.5.0",
     "streamifier": "^0.1.1",
     "stripe": "^18.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
   }
 }

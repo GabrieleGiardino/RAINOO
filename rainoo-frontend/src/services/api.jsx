@@ -2,13 +2,13 @@ import axios from 'axios';
 
 const api = axios.create({
   baseURL: 'http://localhost:3001/api',
-  withCredentials: true, // utile solo se usi cookie
+  withCredentials: true, 
 });
 
 export const fetchLoggedUser = async () => {
   try {
     const token = localStorage.getItem('token');
-    console.log('Token inviato:', token); // DEBUG: verifica che esista
+    console.log('Token inviato:', token); 
 
     const response = await api.get('/auth/profile', {
       headers: {

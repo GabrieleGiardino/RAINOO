@@ -56,3 +56,14 @@
 .google-btn:hover {
   background-color: #3367d6;
 }
+
+.step-icon {
+  font-size: 30px;
+  color: #f59e0b;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+.step:hover .step-icon {
+  transform: scale(1.3);
+}

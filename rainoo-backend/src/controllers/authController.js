@@ -78,14 +78,14 @@ const googleAuthCallback = async (req, res) => {
     });
 
     console.log('✅ Google login success, token:', token);
-    res.redirect(`http://localhost:3000/google-success?token=${token}`);
+    res.redirect(`http://localhost:3001/google-success?token=${token}`);
   } catch (error) {
     console.error('❌ Errore login Google:', error);
     res.status(500).json({ message: 'Errore durante il login con Google' });
   }
 };
 
-// UPLOAD AVATAR (con multer + CloudinaryStorage)
+// UPLOAD AVATAR 
 const uploadAvatar = async (req, res) => {
   try {
     const userId = req.params.id;
@@ -94,7 +94,7 @@ const uploadAvatar = async (req, res) => {
       return res.status(400).json({ message: 'Nessun file caricato.' });
     }
 
-    // multer + CloudinaryStorage ti restituisce già l’URL in req.file.path
+    // multer + CloudinaryStorage 
     const user = await User.findByIdAndUpdate(
       userId,
       { avatar: req.file.path },
