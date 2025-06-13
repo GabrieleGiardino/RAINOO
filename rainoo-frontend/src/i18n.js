@@ -11,7 +11,6 @@ const resources = {
       logout: "Logout",
       contact: "Contattaci",
 
-      // Navbar
       nav: {
         about: "Dicono di noi",
         partnerships: "Collaborazioni",
@@ -20,15 +19,12 @@ const resources = {
         register: "Registrati"
       },
 
-      // Hero
       hero: {
         title: "Noleggia un ombrello. Ovunque. Quando vuoi.",
         subtitle: "Siamo qui per proteggerti dal sole e dalla pioggia, in modo sostenibile.",
         cta: "Scopri le stazioni"
       },
-      
 
-      // Home
       howItWorks: "Come funziona",
       step1: "Trova la stazione più vicina dall'app",
       step2: "Ritira l'ombrello",
@@ -42,51 +38,74 @@ const resources = {
       benefit4: "Puoi usufruire di tanti sconti grazie alle nostre partnership",
       partnersTitle: "Partner e collaborazioni",
 
-      // Partnerships
       partnershipsTitle: "Diventa partner di Rainoo",
-      partnershipsIntro: "Rainoo collabora con aziende, istituzioni e realtà locali per portare ombrelli condivisi in ogni angolo della città. Siamo alla ricerca di partner che condividano la nostra visione di una mobilità sostenibile e di una città più accessibile e vivibile.",
+      partnershipsIntro: "Rainoo collabora con aziende, istituzioni e realtà locali per portare ombrelli condivisi ovunque...",
       publicSpacesTitle: "Spazi pubblici & aziende",
-      publicSpacesText: "Ospita una stazione Rainoo nel tuo spazio commerciale o pubblico e offri un servizio innovativo ai cittadini.",
+      publicSpacesText: "Ospita una stazione Rainoo nel tuo negozio, ufficio o spazio pubblico per offrire un servizio innovativo e utile ai cittadini.",
       sponsorshipsTitle: "Sponsorizzazioni",
-      sponsorshipsText: "Posiziona il tuo brand sugli ombrelli o sulle stazioni Rainoo e comunica il tuo impegno green in modo visibile.",
+      sponsorshipsText: "Personalizza gli ombrelli e le stazioni con il tuo logo e comunica il tuo impegno per la sostenibilità.",
       customProjectsTitle: "Progetti su misura",
-      customProjectsText: "Se sei un ente o una startup interessata a soluzioni condivise, possiamo co-creare progetti personalizzati.",
+      customProjectsText: "Hai un’idea o un progetto particolare? Collaboriamo per sviluppare soluzioni personalizzate su misura per la tua realtà.",
 
-      // Solutions
       solutionsTitle: "Soluzioni Rainoo",
-      solutionsIntro: "Rainoo offre stazioni intelligenti per ombrelli condivisi, pensate per adattarsi a diversi contesti urbani e commerciali. Offriamo soluzioni flessibili e su misura per enti pubblici e realtà private.",
+      solutionsIntro: "Le nostre stazioni intelligenti per ombrelli condivisi sono modulari, facili da installare e integrate con la nostra app.",
       publicTitle: "Spazi pubblici",
-      publicText: "Comuni, parchi e piazze\nStazioni, aeroporti, fermate bus\nUniversità e scuole\n\nFacilita la mobilità urbana sostenibile e proteggi i cittadini in caso di pioggia.",
+      publicText: "Ideali per piazze, parchi, università, stazioni e aeroporti. Offri ai cittadini un nuovo modo per affrontare il maltempo.",
       privateTitle: "Clienti privati",
-      privateText: "Centri commerciali\nAziende e coworking\nHotel, eventi e fiere\n\nOffri un servizio innovativo ai tuoi clienti e valorizza la tua immagine green.",
+      privateText: "Perfette per centri commerciali, coworking, hotel ed eventi. Aggiungi un servizio utile e green alla tua struttura.",
       installationTitle: "Installazione semplice e veloce",
-      installationText: "Le nostre stazioni sono modulari, non richiedono opere complesse e sono facilmente integrabili in qualsiasi ambiente.",
+      installationText: "Le nostre stazioni si installano senza interventi invasivi e si adattano a qualsiasi spazio. Inizia oggi il cambiamento.",
 
-      // About
       aboutTitle: "La Storia di Rainoo",
       aboutSectionTitle: "La storia di Rainoo",
-      aboutParagraph1: "Rainoo nasce da un’idea semplice ma potente: condividere anziché sprecare. In un mondo dove ogni oggetto viene spesso usato una sola volta, ci siamo chiesti:\n“E se gli ombrelli potessero essere condivisi come le bici o i monopattini?”",
-      aboutParagraph2: "Il nostro obiettivo è offrire una soluzione concreta per proteggersi dalla pioggia o dal sole, senza dover possedere un ombrello personale. Con Rainoo, puoi prendere un ombrello nella stazione più vicina, usarlo quanto ti serve, e restituirlo quando hai finito. Tutto questo in pochi click.",
-      aboutParagraph3: "Crediamo in una mobilità urbana più sostenibile, in un consumo più intelligente e nella forza delle piccole azioni quotidiane per costruire un cambiamento collettivo. Perché insieme si può, anche sotto la pioggia.",
+      aboutParagraph1: "Rainoo nasce da un’idea semplice ma potente: condividere anziché sprecare. Ogni anno milioni di ombrelli vengono persi, rotti o dimenticati. Perché non trasformarli in una risorsa condivisa?",
+      aboutParagraph2: "Il nostro obiettivo è offrire una soluzione concreta per proteggerti dal sole e dalla pioggia, senza dover acquistare o trasportare sempre un ombrello. Con Rainoo, prendi un ombrello dove ti serve e lo lasci dove vuoi.",
+      aboutParagraph3: "Crediamo in una mobilità urbana più sostenibile, in una città più intelligente, e in piccoli gesti che insieme fanno la differenza.",
 
-      // Login
       loginTitle: "Login",
       email: "Email",
       password: "Password",
       loginWithGoogle: "Accedi con Google",
 
-      // Register
       registerTitle: "Registrati",
       firstName: "Nome",
       lastName: "Cognome",
       alreadyHaveAccount: "Hai già un account?",
       goToLogin: "Accedi qui",
 
-      // Footer
       rights: "Tutti i diritti riservati.",
-      contactEmail: "Contattaci"
+      contactEmail: "Contattaci",
+
+      profileWelcome: "Benvenuto",
+      edit: "Modifica",
+      save: "Salva",
+      cancel: "Annulla",
+      userType: "Tipo utente",
+      uploadNewPhoto: "Carica nuova foto",
+      uploading: "Caricamento...",
+      avatarUpdated: "Foto aggiornata!",
+      avatarUploadError: "Errore durante il caricamento",
+      selectFile: "Seleziona un file",
+      updateError: "Errore aggiornamento profilo",
+      rentalHistory: "Cronologia noleggi",
+      noRentals: "Nessun noleggio trovato.",
+      station: "Stazione",
+      date: "Data",
+      duration: "Durata",
+      amount: "Importo",
+      rentUmbrella: "Vuoi noleggiare un ombrello?",
+      goToPayment: "Vai al pagamento",
+      loading: "Caricamento in corso...",
+
+      checkout: {
+        title: "Noleggia il tuo ombrello!",
+        description: "Paghi solo 5€ per il noleggio.",
+        cta: "Procedi al pagamento",
+        error: "Errore durante il pagamento"
+      }
     }
   },
+
   en: {
     translation: {
       slogan: "Everyone loves the sun but the rain comes anyway",
@@ -96,7 +115,6 @@ const resources = {
       logout: "Logout",
       contact: "Contact us",
 
-      // Navbar
       nav: {
         about: "About",
         partnerships: "Partnerships",
@@ -105,15 +123,12 @@ const resources = {
         register: "Register"
       },
 
-      // Hero
       hero: {
         title: "Rent an umbrella. Anywhere. Anytime.",
         subtitle: "We're here to protect you from sun and rain, in a sustainable way.",
         cta: "Discover the stations"
       },
-      
 
-      // Home
       howItWorks: "How it works",
       step1: "Find the nearest station with the app",
       step2: "Pick up the umbrella",
@@ -127,56 +142,78 @@ const resources = {
       benefit4: "Enjoy exclusive discounts thanks to our partnerships",
       partnersTitle: "Partners and collaborations",
 
-      // Partnerships
       partnershipsTitle: "Become a Rainoo partner",
-      partnershipsIntro: "Rainoo collaborates with companies, institutions, and local entities to bring shared umbrellas to every corner of the city. We are looking for partners who share our vision of sustainable mobility and a more accessible and livable city.",
+      partnershipsIntro: "Rainoo collaborates with companies, institutions and local organizations to make shared umbrellas accessible everywhere...",
       publicSpacesTitle: "Public spaces & companies",
-      publicSpacesText: "Host a Rainoo station in your commercial or public space and offer citizens an innovative service.",
+      publicSpacesText: "Host a Rainoo station in your store, office, or public area to offer a smart and useful service to citizens.",
       sponsorshipsTitle: "Sponsorships",
-      sponsorshipsText: "Place your brand on umbrellas or Rainoo stations and communicate your green commitment visibly.",
+      sponsorshipsText: "Customize umbrellas and stations with your logo and communicate your commitment to sustainability.",
       customProjectsTitle: "Custom projects",
-      customProjectsText: "If you are an organization or a startup interested in shared solutions, we can co-create custom projects.",
+      customProjectsText: "Do you have a specific idea or project? Let’s work together to build a custom solution for your needs.",
 
-      // Solutions
       solutionsTitle: "Rainoo Solutions",
-      solutionsIntro: "Rainoo offers smart stations for shared umbrellas, designed to adapt to different urban and commercial contexts. We provide flexible and tailor-made solutions for public bodies and private entities.",
+      solutionsIntro: "Our smart umbrella stations are modular, easy to install and integrated with our app.",
       publicTitle: "Public spaces",
-      publicText: "Municipalities, parks and squares\nStations, airports, bus stops\nUniversities and schools\n\nFacilitates sustainable urban mobility and protects citizens in case of rain.",
+      publicText: "Perfect for squares, parks, universities, stations and airports. Offer citizens a smarter way to handle weather.",
       privateTitle: "Private clients",
-      privateText: "Shopping malls\nCompanies and coworking spaces\nHotels, events and fairs\n\nProvide your clients with an innovative service and enhance your green image.",
+      privateText: "Ideal for malls, coworking spaces, hotels and events. Add a sustainable service to your venue.",
       installationTitle: "Easy and fast installation",
-      installationText: "Our stations are modular, do not require complex works, and are easily integrated into any environment.",
+      installationText: "Our stations install easily with no invasive work and adapt to any space. Start the change today.",
 
-      // About
       aboutTitle: "The Story of Rainoo",
       aboutSectionTitle: "The story of Rainoo",
-      aboutParagraph1: "Rainoo was born from a simple but powerful idea: to share instead of waste. In a world where every object is often used only once, we asked ourselves:\n“What if umbrellas could be shared like bikes or scooters?”",
-      aboutParagraph2: "Our goal is to offer a concrete solution to protect yourself from the rain or sun, without needing to own a personal umbrella. With Rainoo, you can grab an umbrella from the nearest station, use it as long as you need, and return it when you're done. All in just a few clicks.",
-      aboutParagraph3: "We believe in more sustainable urban mobility, smarter consumption, and the power of small everyday actions to build collective change. Because together we can—even in the rain.",
+      aboutParagraph1: "Rainoo was born from a simple yet powerful idea: sharing instead of wasting. Millions of umbrellas are lost, broken or forgotten every year. Why not turn them into a shared resource?",
+      aboutParagraph2: "Our goal is to offer a practical solution to protect you from sun and rain, without always having to carry or buy an umbrella. With Rainoo, you grab one where you need and drop it off when you're done.",
+      aboutParagraph3: "We believe in more sustainable urban mobility, smarter cities, and small actions that add up to a big difference.",
 
-      // Login
       loginTitle: "Login",
       email: "Email",
       password: "Password",
       loginWithGoogle: "Login with Google",
 
-      // Register
       registerTitle: "Register",
       firstName: "First Name",
       lastName: "Last Name",
       alreadyHaveAccount: "Already have an account?",
       goToLogin: "Login here",
 
-      // Footer
       rights: "All rights reserved.",
-      contactEmail: "Contact us"
+      contactEmail: "Contact us",
+
+      profileWelcome: "Welcome",
+      edit: "Edit",
+      save: "Save",
+      cancel: "Cancel",
+      userType: "User type",
+      uploadNewPhoto: "Upload new photo",
+      uploading: "Uploading...",
+      avatarUpdated: "Photo updated!",
+      avatarUploadError: "Error uploading avatar",
+      selectFile: "Select a file",
+      updateError: "Error updating profile",
+      rentalHistory: "Rental history",
+      noRentals: "No rentals found.",
+      station: "Station",
+      date: "Date",
+      duration: "Duration",
+      amount: "Amount",
+      rentUmbrella: "Want to rent an umbrella?",
+      goToPayment: "Go to payment",
+      loading: "Loading...",
+
+      checkout: {
+        title: "Rent your umbrella!",
+        description: "Pay only €5 for the rental.",
+        cta: "Proceed to payment",
+        error: "Payment error occurred"
+      }
     }
   }
 };
 
 i18n.use(initReactI18next).init({
   resources,
-  lng: 'it', // lingua di default
+  lng: 'it',
   fallbackLng: 'en',
   interpolation: {
     escapeValue: false

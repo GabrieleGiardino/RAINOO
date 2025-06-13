@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import AuthContext from '../context/AuthContext';
 import { FaBars, FaTimes } from 'react-icons/fa';
@@ -8,6 +8,7 @@ import './NavBar.css';
 function Navbar() {
   const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const { t, i18n } = useTranslation();
 
@@ -38,6 +39,7 @@ function Navbar() {
       </div>
 
       <div className={`navbar-links ${menuOpen ? 'open' : ''}`}>
+        {/* Se l'utente NON è loggato */}
         {!user && (
           <>
             <Link to="/about" onClick={handleLinkClick}>{t('nav.about')}</Link>
@@ -47,27 +49,33 @@ function Navbar() {
             <Link to="/register" onClick={handleLinkClick}>{t('nav.register')}</Link>
           </>
         )}
+
+        {/* Se l'utente È loggato */}
         {user && (
           <>
-            <Link to="/profile" onClick={handleLinkClick}>{t('profile')}</Link>
-            <div className="navbar-user">
+            <Link to="/about" onClick={handleLinkClick}>{t('nav.about')}</Link>
+            <Link to="/partnerships" onClick={handleLinkClick}>{t('nav.partnerships')}</Link>
+            <Link to="/solutions" onClick={handleLinkClick}>{t('nav.solutions')}</Link>
+
+            {/* Foto profilo cliccabile che porta al profilo */}
+            <Link to="/profile" onClick={handleLinkClick}>
               <img
                 src={user.avatar || user.picture || 'https://via.placeholder.com/40'}
                 alt="Foto profilo"
-                style={{
-                  width: '40px',
-                  height: '40px',
-                  borderRadius: '50%',
-                  objectFit: 'cover',
-                  marginRight: '8px'
-                }}
+                className="navbar-avatar"
               />
-              <span>{user.username || user.name}</span>
-              <button onClick={handleLogout}>{t('logout')}</button>
-            </div>
+            </Link>
+
+            {/* Logout solo su pagina profilo */}
+            {location.pathname === '/profile' && (
+              <button onClick={handleLogout} className="logout-button">
+                {t('logout')}
+              </button>
+            )}
           </>
         )}
 
+        {/* Lingue */}
         <div className="language-switch">
           <button onClick={() => changeLanguage('it')}>🇮🇹</button>
           <button onClick={() => changeLanguage('en')}>🇬🇧</button>

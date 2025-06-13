@@ -1,4 +1,3 @@
-// src/routes/stripeRoutes.js
 const express = require('express');
 const router = express.Router();
 const Stripe = require('stripe');
@@ -16,7 +15,7 @@ router.post('/create-checkout-session', async (req, res) => {
             product_data: {
               name: 'Noleggio Ombrello',
             },
-            unit_amount: 500, // €5.00
+            unit_amount: 500, 
           },
           quantity: 1,
         },

@@ -1,0 +1,110 @@
+/* === PROFILO === */
+.profile-container {
+    max-width: 700px;
+    margin: 80px auto;
+    padding: 30px 20px;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .profile-container h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1e293b;
+    margin-bottom: 20px;
+  }
+  
+  .profile-info p {
+    font-size: 1.1rem;
+    color: #374151;
+    margin: 8px 0;
+  }
+  
+  .profile-buttons {
+    margin-top: 20px;
+  }
+  
+  .profile-buttons button {
+    margin: 6px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+  }
+  
+  .profile-buttons button:first-child {
+    background-color: #2563eb;
+    color: white;
+  }
+  
+  .profile-buttons button:first-child:hover {
+    background-color: #1d4ed8;
+  }
+  
+  .profile-buttons button:last-child {
+    background-color: #e2e8f0;
+    color: #1e293b;
+  }
+  
+  .profile-buttons button:last-child:hover {
+    background-color: #cbd5e1;
+  }
+  
+  .profile-avatar {
+    margin-top: 30px;
+  }
+  
+  .profile-avatar img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #2563eb;
+  }
+  
+  .profile-avatar input[type="file"] {
+    margin-top: 10px;
+  }
+  
+  .upload-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #10b981;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .upload-button:hover {
+    background-color: #059669;
+  }
+  
+  .profile-table {
+    margin-top: 40px;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .profile-table th, .profile-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .profile-table th {
+    background-color: #f1f5f9;
+    color: #1e293b;
+    font-weight: bold;
+  }
+  
+  .profile-table td {
+    color: #374151;
+  }
+  

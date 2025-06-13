@@ -1,53 +1,34 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import './Solutions.css';
 
 function Solutions() {
   const { t } = useTranslation();
 
   return (
-    <div style={{ padding: '60px 20px', maxWidth: '1000px', margin: '0 auto', textAlign: 'center' }}>
-      <h1 style={{ fontSize: '2.5rem', marginBottom: '20px' }}>{t('solutionsTitle')}</h1>
+    <div className="solutions-container">
+      <h1 className="solutions-title">{t('solutionsTitle')}</h1>
 
-      <p style={{ fontSize: '1.2rem', marginBottom: '40px' }}>
-        {t('solutionsIntro')}
-      </p>
+      <p className="solutions-intro">{t('solutionsIntro')}</p>
 
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '30px', justifyContent: 'center' }}>
-        <div style={cardStyle}>
+      <div className="solutions-cards">
+        <div className="solution-card">
           <h3>🏛️ {t('publicTitle')}</h3>
-          <p style={listStyle}>{t('publicText')}</p>
+          <p className="solution-text">{t('publicText')}</p>
         </div>
 
-        <div style={cardStyle}>
+        <div className="solution-card">
           <h3>🏢 {t('privateTitle')}</h3>
-          <p style={listStyle}>{t('privateText')}</p>
+          <p className="solution-text">{t('privateText')}</p>
         </div>
       </div>
 
-      <div style={{ marginTop: '50px' }}>
-        <h2 style={{ fontSize: '1.8rem' }}>{t('installationTitle')}</h2>
-        <p style={{ fontSize: '1.1rem' }}>
-          {t('installationText')}
-        </p>
+      <div className="installation-box">
+        <h2>{t('installationTitle')}</h2>
+        <p>{t('installationText')}</p>
       </div>
     </div>
   );
 }
-
-const cardStyle = {
-  backgroundColor: '#f7f7f7',
-  borderRadius: '12px',
-  padding: '30px',
-  width: '280px',
-  boxShadow: '0 0 10px rgba(0,0,0,0.1)',
-  textAlign: 'left'
-};
-
-const listStyle = {
-  textAlign: 'left',
-  whiteSpace: 'pre-line',
-  marginBottom: '15px',
-  fontSize: '1rem'
-};
 
 export default Solutions;

@@ -1,4 +1,3 @@
-// src/pages/Dashboard.jsx
 import { useContext, useState } from 'react';
 import AuthContext from '../context/AuthContext';
 import axios from 'axios';
@@ -20,7 +19,7 @@ function Dashboard() {
     e.preventDefault();
     try {
       const res = await axios.patch(`http://localhost:3001/api/users/${user._id}`, formData);
-      setUser(res.data); // aggiorna contesto
+      setUser(res.data);
       alert('Profilo aggiornato!');
     } catch (err) {
       alert('Errore durante l\'aggiornamento.');

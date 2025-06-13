@@ -1,11 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
-const upload = require('../middlewares/multer'); // middleware per l’upload
+const upload = require('../middlewares/multer');
 const authMiddleware = require('../middlewares/authMiddleware');
-const { uploadAvatar } = require('../controllers/authController'); // attenzione: qui prendiamo da authController!
-
-// Rotta POST /api/users/:id/avatar → protetta da authMiddleware + multer
+const {
+  uploadAvatar,
+  updateUser,
+  getUserRentals
+} = require('../controllers/authController'); 
 router.post('/:id/avatar', authMiddleware, upload.single('avatar'), uploadAvatar);
+
+router.put('/:id', authMiddleware, updateUser); 
+router.get('/:id/rentals', authMiddleware, getUserRentals); 
 
 module.exports = router;

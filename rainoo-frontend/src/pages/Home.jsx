@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import MotionDiv from '../components/MotionDiv';
-import { FaMapMarkedAlt, FaUmbrellaBeach, FaCloudSunRain, FaExchangeAlt } from 'react-icons/fa';
+import {
+  FaMapMarkedAlt,
+  FaQrcode,
+  FaCloudSunRain,
+  FaExchangeAlt,
+} from 'react-icons/fa';
 import MapWithMarkers from './Map';
 import Hero from './Hero';
 import './Home.css';
@@ -14,7 +19,7 @@ function Home() {
     const milanoMarkers = [
       [45.4642, 9.19],
       [45.4780, 9.2270],
-      [45.4668, 9.1905]
+      [45.4668, 9.1905],
     ];
     setMarkers(milanoMarkers);
 
@@ -32,10 +37,26 @@ function Home() {
         <section className="how-it-works section-box">
           <h3 className="section-title">{t('howItWorks')}</h3>
           <div className="steps-container">
-            <div className="step"><FaMapMarkedAlt /><h4>01</h4><p>{t('step1')}</p></div>
-            <div className="step"><FaUmbrellaBeach /><h4>02</h4><p>{t('step2')}</p></div>
-            <div className="step"><FaCloudSunRain /><h4>03</h4><p>{t('step3')}</p></div>
-            <div className="step"><FaExchangeAlt /><h4>04</h4><p>{t('step4')}</p></div>
+            <div className="step">
+              <FaMapMarkedAlt className="step-icon" />
+              <h4>01</h4>
+              <p>{t('step1')}</p>
+            </div>
+            <div className="step">
+              <FaQrcode className="step-icon" />
+              <h4>02</h4>
+              <p>{t('step2')}</p>
+            </div>
+            <div className="step">
+              <FaCloudSunRain className="step-icon" />
+              <h4>03</h4>
+              <p>{t('step3')}</p>
+            </div>
+            <div className="step">
+              <FaExchangeAlt className="step-icon" />
+              <h4>04</h4>
+              <p>{t('step4')}</p>
+            </div>
           </div>
         </section>
       </MotionDiv>
@@ -50,12 +71,12 @@ function Home() {
       <MotionDiv>
         <section className="benefits-section section-box">
           <h3 className="section-title">{t('benefitsTitle')}</h3>
-          <ul className="benefits-list">
-            <li>{t('benefit1')}</li>
-            <li>{t('benefit2')}</li>
-            <li>{t('benefit3')}</li>
-            <li>{t('benefit4')}</li>
-          </ul>
+          <div className="benefits-grid">
+            <div className="benefit-card">💸 {t('benefit1')}</div>
+            <div className="benefit-card">🌱 {t('benefit2')}</div>
+            <div className="benefit-card">🎒 {t('benefit3')}</div>
+            <div className="benefit-card">🏷️ {t('benefit4')}</div>
+          </div>
         </section>
       </MotionDiv>
 

@@ -1,37 +1,74 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import AuthContext from '../context/AuthContext';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
+import './Profile.css';
 
 function Profile() {
   const { user, updateUser } = useContext(AuthContext);
+  const { t } = useTranslation();
+  const [formData, setFormData] = useState({});
+  const [isEditing, setIsEditing] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploading, setUploading] = useState(false);
+  const [rentals, setRentals] = useState([]);
 
-  if (!user) {
-    return <p>Loading...</p>;
-  }
+  useEffect(() => {
+    if (user && user._id) {
+      setFormData({
+        nome: user.nome || '',
+        cognome: user.cognome || '',
+        email: user.email || '',
+        age: user.age || '',
+        userType: user.userType || 'base',
+      });
+
+      const token = localStorage.getItem('token');
+      axios
+        .get(`http://localhost:3001/api/users/${user._id}/rentals`, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => setRentals(res.data))
+        .catch((err) => console.error('Errore noleggi:', err));
+    }
+  }, [user]);
+
+  const handleChange = (e) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSave = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const res = await axios.put(
+        `http://localhost:3001/api/users/${user._id}`,
+        formData,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      updateUser(res.data);
+      setIsEditing(false);
+    } catch (err) {
+      console.error('Errore aggiornamento profilo:', err);
+      alert(t('updateError'));
+    }
+  };
 
   const handleFileChange = (e) => {
     setSelectedFile(e.target.files[0]);
   };
 
   const handleUpload = async () => {
-    if (!selectedFile) {
-      alert('Seleziona un file prima di caricare.');
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append('avatar', selectedFile);
-
+    if (!selectedFile) return alert(t('selectFile'));
+    const form = new FormData();
+    form.append('avatar', selectedFile);
     try {
       setUploading(true);
       const token = localStorage.getItem('token');
-
-      const response = await axios.post(
+      const res = await axios.post(
         `http://localhost:3001/api/users/${user._id}/avatar`,
-        formData,
+        form,
         {
           headers: {
             'Content-Type': 'multipart/form-data',
@@ -39,77 +76,97 @@ function Profile() {
           },
         }
       );
-
-      updateUser({ avatar: response.data.avatarUrl });
-      alert('✅ Foto profilo aggiornata con successo!');
-    } catch (error) {
-      console.error('❌ Errore upload:', error.response?.data || error);
-      alert('Errore durante il caricamento della foto.');
+      updateUser({ ...user, avatar: res.data.avatarUrl });
+      alert(t('avatarUpdated'));
+    } catch (err) {
+      console.error('Upload error:', err);
+      alert(t('avatarUploadError'));
     } finally {
       setUploading(false);
     }
   };
 
+  if (!user) return <p>{t('loading')}</p>;
+
   return (
-    <div style={{ textAlign: 'center', padding: '60px 20px' }}>
-      <h1>Benvenuto, {user.username}</h1>
-      <p>Email: {user.email}</p>
+    <div className="profile-container">
+      <h1>{t('profileWelcome')}, {user.username}</h1>
 
-      <div style={{ marginTop: '20px' }}>
-        {user.avatar ? (
-          <img
-            src={user.avatar}
-            alt="Avatar"
-            style={{
-              width: '150px',
-              height: '150px',
-              borderRadius: '50%',
-              objectFit: 'cover',
-              marginBottom: '10px'
-            }}
-          />
+      <div className="profile-info">
+        {isEditing ? (
+          <>
+            <input name="email" value={formData.email} onChange={handleChange} placeholder={t('email')} /><br />
+            <input name="nome" value={formData.nome} onChange={handleChange} placeholder={t('firstName')} /><br />
+            <input name="cognome" value={formData.cognome} onChange={handleChange} placeholder={t('lastName')} /><br />
+            <input name="age" value={formData.age} onChange={handleChange} placeholder={t('age')} /><br />
+            <select name="userType" value={formData.userType} onChange={handleChange}>
+              <option value="base">Base</option>
+              <option value="premium">Premium</option>
+            </select><br />
+            <div className="profile-buttons">
+              <button onClick={handleSave}>{t('save')}</button>
+              <button onClick={() => setIsEditing(false)}>{t('cancel')}</button>
+            </div>
+          </>
         ) : (
-          <p>Nessun avatar caricato</p>
+          <>
+            <p>{t('email')}: {user.email}</p>
+            <p>{t('firstName')}: {user.nome}</p>
+            <p>{t('lastName')}: {user.cognome}</p>
+            <p>{t('age')}: {user.age || 'N/D'}</p>
+            <p>{t('userType')}: {user.userType}</p>
+            <div className="profile-buttons">
+              <button onClick={() => setIsEditing(true)}>{t('edit')}</button>
+            </div>
+          </>
         )}
+      </div>
 
-        <div>
-          <input type="file" onChange={handleFileChange} />
-          <button
-            onClick={handleUpload}
-            disabled={uploading}
-            style={{
-              padding: '10px 20px',
-              marginLeft: '10px',
-              backgroundColor: '#28a745',
-              color: '#fff',
-              border: 'none',
-              borderRadius: '6px',
-              cursor: 'pointer'
-            }}
-          >
-            {uploading ? 'Caricamento...' : 'Carica nuova foto'}
-          </button>
-        </div>
+      <div className="profile-avatar">
+      <img src={user.avatar || 'https://via.placeholder.com/150'} alt="avatar" />
+
+
+
+        <br />
+        <input type="file" onChange={handleFileChange} />
+        <button onClick={handleUpload} disabled={uploading} className="upload-button">
+          {uploading ? t('uploading') : t('uploadNewPhoto')}
+        </button>
       </div>
 
       <div style={{ marginTop: '40px' }}>
-        <h2>Vuoi noleggiare un ombrello?</h2>
-        <Link to="/checkout">
-          <button
-            style={{
-              padding: '12px 24px',
-              fontSize: '16px',
-              backgroundColor: '#3399ff',
-              color: '#fff',
-              border: 'none',
-              borderRadius: '8px',
-              cursor: 'pointer',
-              marginTop: '20px'
-            }}
-          >
-            Vai al pagamento
-          </button>
-        </Link>
+        <h2>{t('rentalHistory')}</h2>
+        {rentals.length === 0 ? (
+          <p>{t('noRentals')}</p>
+        ) : (
+          <table className="profile-table">
+            <thead>
+              <tr>
+                <th>{t('station')}</th>
+                <th>{t('date')}</th>
+                <th>{t('duration')}</th>
+                <th>{t('amount')}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rentals.map((r, i) => (
+                <tr key={i}>
+                  <td>{r.station}</td>
+                  <td>{new Date(r.date).toLocaleDateString()}</td>
+                  <td>{r.duration}h</td>
+                  <td>{r.amount}€</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
+
+      <div style={{ marginTop: '40px' }}>
+        <h3>{t('rentUmbrella')}</h3>
+        <a href="/checkout">
+          <button className="upload-button">{t('goToPayment')}</button>
+        </a>
       </div>
     </div>
   );

@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 30px;
-  background-color: #3399ff; /* blu cielo intenso */
+  background-color: #3399ff;
   border-bottom: 1px solid #0077cc;
   box-sizing: border-box;
 }
@@ -23,6 +23,7 @@
   white-space: nowrap;
 }
 
+/* === MENU TOGGLE (Burger) === */
 .navbar-toggle {
   display: none;
   font-size: 26px;
@@ -30,53 +31,59 @@
   color: white;
 }
 
+/* === NAVBAR LINKS === */
 .navbar-links {
   display: flex;
-  gap: 35px;
+  gap: 20px;
   align-items: center;
 }
 
 .navbar-links a {
   color: white;
   text-decoration: none;
-  font-weight: 200;
+  font-weight: 400;
+  transition: all 0.2s ease;
 }
 
 .navbar-links a:hover {
   text-decoration: underline;
 }
 
-.navbar-user {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.navbar-user img {
-  width: 32px;
-  height: 32px;
+/* === AVATAR e Logout === */
+.navbar-avatar {
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   object-fit: cover;
+  border: 2px solid white;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
-.navbar-user span {
-  color: white;
+.navbar-avatar:hover {
+  transform: scale(1.05);
 }
 
-.navbar-user button {
+.logout-button {
   padding: 6px 12px;
   background-color: #ffaa33;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
+  margin-left: 10px;
+  transition: background-color 0.2s ease;
 }
 
-/* Switch lingua */
+.logout-button:hover {
+  background-color: #ff9800;
+}
+
+/* === LINGUE === */
 .language-switch {
   display: flex;
   gap: 10px;
-  margin-left: 10px;
+  align-items: center;
 }
 
 .language-switch button {
@@ -85,9 +92,15 @@
   border: none;
   cursor: pointer;
   color: white;
+  padding: 4px;
+  transition: transform 0.2s ease;
 }
 
-/* === Responsive === */
+.language-switch button:hover {
+  transform: scale(1.2);
+}
+
+/* === RESPONSIVE === */
 @media (max-width: 768px) {
   .navbar-toggle {
     display: block;
@@ -95,11 +108,13 @@
 
   .navbar-links {
     display: none;
-    width: 100%;
     flex-direction: column;
-    margin-top: 10px;
     background-color: #3399ff;
-    padding: 10px;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    padding: 20px;
   }
 
   .navbar-links.open {
@@ -107,8 +122,13 @@
   }
 
   .navbar-links a,
-  .navbar-user,
-  .language-switch {
+  .language-switch,
+  .logout-button {
     padding: 10px 0;
+    text-align: center;
+  }
+
+  .navbar-avatar {
+    margin: 10px auto;
   }
 }

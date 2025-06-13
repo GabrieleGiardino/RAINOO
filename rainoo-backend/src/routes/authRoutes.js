@@ -8,15 +8,12 @@ const { registerUser } = require('../controllers/authController');
 
 const router = express.Router();
 
-// Route di test
 router.get('/debug', (req, res) => {
   res.json({ message: '✅ Route /api/auth/debug attiva!' });
 });
 
-// Registrazione classica
 router.post('/register', registerUser);
 
-// Login classico
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -47,7 +44,6 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Profilo protetto
 router.get('/profile', authMiddleware, (req, res) => {
   res.json({
     message: 'Benvenuto nel tuo profilo!',
@@ -55,7 +51,6 @@ router.get('/profile', authMiddleware, (req, res) => {
   });
 });
 
-// Avvio login Google
 router.get(
   '/google',
   passport.authenticate('google', {
@@ -64,7 +59,6 @@ router.get(
   })
 );
 
-// Callback Google
 router.get(
   '/google/callback',
   passport.authenticate('google', { failureRedirect: '/login/failed' }),
